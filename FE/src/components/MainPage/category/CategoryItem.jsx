@@ -5,7 +5,7 @@ const CategoryItem = () => {
   return (
     <CategoryItemList>
       <ImgWrapper>
-        <MarketImg>hi</MarketImg>
+        <MarketImg></MarketImg>
       </ImgWrapper>
       <DetailContainer>
         <MarketName>{}</MarketName>
