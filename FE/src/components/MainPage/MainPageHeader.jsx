@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
-import MarketCategory from "../MarketCategory";
-import MarketMap from "../MarketMap";
+import MarketCategory from "./category/MarketCategory";
+import MarketMap from "./marketInfo/MarketMap";
 import { CiGlobe } from "react-icons/ci";
 import InfoModal from "./InfoModal";
 const MainPageHeader = () => {
