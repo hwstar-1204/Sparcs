@@ -1,14 +1,22 @@
 import styled from "styled-components";
 import { useState } from "react";
 import MarketCategory from "../MarketCategory";
-import MarketMap from "../MarketCategory";
+import MarketMap from "../MarketMap";
+import { CiGlobe } from "react-icons/ci";
 
 const MainPageHeader = () => {
   const [selectName, setSelectName] = useState("market info");
   return (
     <>
       <HeaderContainer>
-        <HeaderTitle>광장시장</HeaderTitle>
+        <TranslationBtnWrapper>
+          <TranslationBtn>
+            <CiGlobe size={"1rem"} strokeWidth={0.5} />
+            <div>한국어</div>
+          </TranslationBtn>
+        </TranslationBtnWrapper>
+
+        <HeaderTitle>광장 시장</HeaderTitle>
         <SelectContainer>
           <SelectBtn
             isSelected={selectName === "market info"}
@@ -24,7 +32,7 @@ const MainPageHeader = () => {
           </SelectBtn>
         </SelectContainer>
       </HeaderContainer>
-      {selectName === "market info" ? <MarketMap /> : <MarketCategory />}
+      {selectName === "category" ? <MarketCategory /> : <MarketMap />}
     </>
   );
 };
@@ -38,6 +46,26 @@ const HeaderContainer = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   div {
     font-size: 1.25rem;
+    font-weight: bold;
+  }
+`;
+const TranslationBtnWrapper = styled.div`
+  position: absolute;
+  left: 335px;
+  top: 69px;
+`;
+const TranslationBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #eef0f8;
+  div {
+    font-size: 0.5rem;
+    margin-top: 0.2rem;
     font-weight: bold;
   }
 `;
