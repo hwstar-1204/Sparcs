@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const ClassificationCategory = () => {
+const ClassificationCategory = ({ category }) => {
   return (
     <ClassificationLayout>
       <Classification>
-        <div></div>
+        <div>{category}</div>
       </Classification>
     </ClassificationLayout>
   );
@@ -19,15 +19,17 @@ const ClassificationLayout = styled.div`
   height: 3.6875rem;
 `;
 const Classification = styled.div`
-  width: 3rem;
+  width: auto;
   height: 1.625rem;
   background-color: #e8e8e8;
   border-radius: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 0.5rem;
   div {
     color: #a0a0a0;
     font-size: 0.75rem;
+    margin: 0.7rem;
   }
 `;
