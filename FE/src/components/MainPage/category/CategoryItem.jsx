@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { MdArrowForwardIos } from "react-icons/md";
 
-const CategoryItem = () => {
+const CategoryItem = ({ name, category, address }) => {
   return (
     <CategoryItemList>
       <ImgWrapper>
         <MarketImg></MarketImg>
       </ImgWrapper>
       <DetailContainer>
-        <MarketName>{}</MarketName>
+        <MarketName>{name}</MarketName>
         <Classfication>
-          <div></div>
+          <div>category</div>
         </Classfication>
-        <Location>{}</Location>
+        <Location>{address}</Location>
       </DetailContainer>
       <ChatBotBtn>
         <MdArrowForwardIos color="#707070" />

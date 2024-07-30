@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
-const ClassificationCategory = ({ category }) => {
+const ClassificationCategory = ({ category, onClick }) => {
   return (
     <ClassificationLayout>
-      <Classification>
+      <Classification onClick={onClick}>
         <div>{category}</div>
       </Classification>
     </ClassificationLayout>

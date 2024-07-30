@@ -1,11 +1,13 @@
 import CategoryItem from "./CategoryItem";
 import styled from "styled-components";
 
-const ListCategory = () => {
+const ListCategory = ({ events }) => {
   return (
     <ListLayout>
       <ListItem>
-        <CategoryItem />
+        {events.map((event) => {
+          return <CategoryItem key={event.id} {...event} />;
+        })}
       </ListItem>
     </ListLayout>
   );
