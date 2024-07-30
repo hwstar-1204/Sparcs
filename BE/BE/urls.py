@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # store_info에 url 추가
     path('store_info/', include('store_info.urls', namespace='store_info')),
+    path('clova_chatbot/', include('clova_chatbot.urls', namespace='clova_chatbot')),
 
 ]

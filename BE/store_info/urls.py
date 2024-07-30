@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from store_info.views import StoreListAPIView, CategoryListAPIView
 
-app_name = 'store_info'  # 이 부분을 추가합니다
+app_name = 'store_info'
 
 
 urlpatterns = [
