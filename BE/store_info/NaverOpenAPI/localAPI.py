@@ -1,6 +1,10 @@
 import json
+import sys
 import os
+import time
 
+# Django 프로젝트의 루트 디렉터리를 Python 경로에 추가
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "BE.settings")
 
 import django
@@ -11,11 +15,14 @@ from utils import clean_html_tags
 from store_info.models import Store
 
 
+
 def local(naver_local_api: NaverLocalAPI, serach_store: str):
     naver_local_api.set_encText(serach_store)  # 검색할 내용
     naver_local_api.set_display_num(1)
     naver_local_api.set_sorted_type("comment")
     data = naver_local_api.run()
+
+    print(f"Raw data: {data}")
 
     data = json.loads(data)
 
@@ -51,13 +58,15 @@ if __name__ == "__main__":
     naver_local_api = NaverLocalAPI()
 
     # # 블로그 리뷰 경색할 점포 리스트 읽어오기
-    search_store_file_path = '/Users/hwstar/Documents/GitHub/Sparcs/BE/store_info/data/search_stores.txt'
+    search_store_file_path = '/root/Sparcs/BE/store_info/data/search_stores.txt'
 
     try:
         with open(search_store_file_path, 'r') as file:
             for line in file:
                 search_store = line.strip()
+                print(type(search_store))
                 local(naver_local_api, search_store)
+                time.sleep(1)
     except FileNotFoundError:
         print(f"Error: The file '{search_store_file_path}' does not exist.")
         # 지금까지 저장된 데이터를 모두 삭제

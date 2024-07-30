@@ -85,7 +85,7 @@ class NaverLocalAPI:
 
     def run(self) -> str:
         if self.encText is None:
-            raise "Error: No encText"
+            raise ValueError("Error: No encText")  # TypeError가 아닌 ValueError로 변경
 
         url = self.url + self.encText + "&display=" + str(self.display_num) + "&sort=" + self.sorted_type
 
