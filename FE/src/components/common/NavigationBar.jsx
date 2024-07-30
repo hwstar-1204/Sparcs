@@ -55,7 +55,7 @@ const NavigationBar = () => {
           isSelected={selectedButton === "myscan"}
         >
           <AiOutlineScan size={"1.7rem"} />
-          <div>스캔 기록</div>
+          <div>스탬프북</div>
         </SelectBtn>
       </SelectContainer>
     </NavigationLayout>
