@@ -1,18 +1,84 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { IoMdArrowDropright } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import styled from "styled-components";
 import backgroundImage from "../assets/chatbackground.png";
 import welcomeImage from "../assets/chat/p.png";
 import ChatWindow from "../components/chat/ChatWindow";
 import MessageInput from "../components/chat/MessageInput";
+import axios from "axios";
+
 const ChatBot = () => {
   const { marketName } = useParams();
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [storeStamp, setStoreStamp] = useState(null);
-  const [selectMessage, setSelectMessage] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isWaiting, setIsWaiting] = useState(false);
+
+  const handleSelect = async (option) => {
+    setSelectedOption(option);
+    let query = "";
+
+    switch (option) {
+      case "가게 소개":
+        query = `${marketName}의 매장 특징과 매장 분위기, 기타 정보, 영업 시간을 알려줘`;
+        break;
+      case "대표 인기메뉴":
+        query = `${marketName}의 대표인기메뉴와 그 안에 들어가는 주요 재료와 조리방법, 떡볶이의 유래를 알려줘`;
+        break;
+      case "고객 리뷰":
+        query = `${marketName}에 대한 고객들의 리뷰를 알려줘`;
+        break;
+      case "잘 어울리는 음식":
+        query = `${marketName}에서 파는 음식과 잘 어울리는 음식을 알려줘`;
+        break;
+      case "그 외":
+        query = `다른 부분이 궁금해`;
+        break;
+      default:
+        query = `${marketName} ${option}`;
+    }
+
+    setIsWaiting(true);
+    addMessage({
+      text: "나랑이가 열심히 답변을 생성중입니다. 조금만 기다려 주세요!",
+      isUser: false,
+      isLoading: true,
+    });
+
+    try {
+      const response = await axios.post(
+        `http://101.79.10.180:8000/clova_chatbot/skillset/`,
+        {
+          query: query,
+          tokenStream: false,
+          requestOverride: {
+            baseOperation: {
+              header: {
+                "X-Naver-Client-Id": "QdTH6RmiC3gXDz03tzBs",
+                "X-Naver-Client-Secret": "YF3soMinxm",
+              },
+            },
+          },
+        }
+      );
+
+      const data = JSON.parse(response.data);
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => !msg.isLoading)
+      );
+      addMessage({ text: data.answer, isUser: false });
+    } catch (err) {
+      console.log(err);
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => !msg.isLoading)
+      );
+      addMessage({ text: "죄송합니다. 오류가 발생했습니다.", isUser: false });
+    } finally {
+      setIsWaiting(false);
+    }
+  };
 
   useEffect(() => {
     const importStamp = async () => {
@@ -63,27 +129,32 @@ const ChatBot = () => {
               </Stamp>
               <Detail>
                 <DetailContent
-                  onClick={() => setSelectMessage("가게 소개해줘")}
+                  onClick={() => handleSelect("가게 소개")}
+                  isSelected={selectedOption === "가게 소개"}
                 >
                   <div>가게 소개</div>
                 </DetailContent>
                 <DetailContent
-                  onClick={() => setSelectMessage("대표 인기메뉴가 뭐야?")}
+                  onClick={() => handleSelect("대표 인기메뉴")}
+                  isSelected={selectedOption === "대표 인기메뉴"}
                 >
                   <div>대표 인기메뉴</div>
                 </DetailContent>
                 <DetailContent
-                  onClick={() => setSelectMessage("고객 리뷰 보여줘")}
+                  onClick={() => handleSelect("고객 리뷰")}
+                  isSelected={selectedOption === "고객 리뷰"}
                 >
                   <div>고객 리뷰</div>
                 </DetailContent>
                 <DetailContent
-                  onClick={() => setSelectMessage("잘 어울리는 음식은 뭐야?")}
+                  onClick={() => handleSelect("잘 어울리는 음식")}
+                  isSelected={selectedOption === "잘 어울리는 음식"}
                 >
                   <div>잘 어울리는 음식</div>
                 </DetailContent>
                 <DetailContent
-                  onClick={() => setSelectMessage("그 외 것들을 질문할래")}
+                  onClick={() => handleSelect("그 외")}
+                  isSelected={selectedOption === "그 외"}
                 >
                   <div>그 외</div>
                 </DetailContent>
@@ -104,6 +175,48 @@ const ChatBot = () => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
 
+  const handleSendMessage = async (message) => {
+    addMessage({ text: message, isUser: true });
+    setIsWaiting(true);
+    addMessage({
+      text: "나랑이가 열심히 답변을 생성중입니다. 조금만 기다려 주세요!",
+      isUser: false,
+      isLoading: true,
+    });
+
+    try {
+      const response = await axios.post(
+        `http://101.79.10.180:8000/clova_chatbot/skillset/`,
+        {
+          query: message,
+          tokenStream: false,
+          requestOverride: {
+            baseOperation: {
+              header: {
+                "X-Naver-Client-Id": "QdTH6RmiC3gXDz03tzBs",
+                "X-Naver-Client-Secret": "YF3soMinxm",
+              },
+            },
+          },
+        }
+      );
+
+      const data = JSON.parse(response.data);
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => !msg.isLoading)
+      );
+      addMessage({ text: data.answer, isUser: false });
+    } catch (err) {
+      console.error(err);
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => !msg.isLoading)
+      );
+      addMessage({ text: "죄송합니다. 오류가 발생했습니다.", isUser: false });
+    } finally {
+      setIsWaiting(false);
+    }
+  };
+
   return (
     <ChatContainer>
       <HeaderBar>
@@ -117,7 +230,10 @@ const ChatBot = () => {
         </div>
       </HeaderBar>
       <ChatWindow messages={messages} />
-      <MessageInput addMessage={addMessage} />
+      <MessageInput
+        handleSendMessage={handleSendMessage}
+        isWaiting={isWaiting}
+      />
     </ChatContainer>
   );
 };
@@ -168,11 +284,12 @@ const WelcomeMessage = styled.div`
   align-items: center;
   margin-left: -20px;
   margin-top: 7px;
-  padding: 5px;
+  padding: 8px;
+  padding-right: 0;
 `;
 
 const WelcomeText = styled.span`
-  font-size: 0.9rem;
+  font-size: 0.83rem;
   margin-bottom: 10px;
 `;
 
@@ -220,9 +337,8 @@ const Detail = styled.div`
 `;
 
 const DetailContent = styled.button`
-  background-color: #f3e7db;
-  border-color: #644119;
-  color: #111111;
+  background-color: ${(props) => (props.isSelected ? "#644119" : "#f3e7db")};
+  color: ${(props) => (props.isSelected ? "#FFFFFF" : "#111111")};
   padding: 7px;
   display: flex;
   justify-content: center;
@@ -230,13 +346,20 @@ const DetailContent = styled.button`
   width: 110px;
   margin: 2px 0;
   height: 23px;
-  border: 1.5px solid;
+  border: 1px solid;
   border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
+  transition: all 0.3s ease;
+
   div {
     font-size: 0.6rem;
     font-weight: bold;
+  }
+
+  &:hover {
+    background-color: #644119;
+    color: #ffffff;
   }
 `;
 

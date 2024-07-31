@@ -31,14 +31,13 @@ const Message = ({ message, isFirstMessage }) => {
 const MessageContainer = styled.div`
   display: flex;
   justify-content: ${(props) => (props.isUser ? "flex-end" : "flex-start")};
-  margin-bottom: ${(props) => (props.isUser ? "50px" : "15px")};
+  margin-bottom: ${(props) => (props.isUser ? "50px" : "40px")};
   width: 100%;
 `;
 
 const MessageBubble = styled.div`
-  width: ${(props) =>
-    !props.isUser && props.isFirstMessage ? "auto" : "100%"};
-  padding: 8px;
+  width: ${(props) => (!props.isUser && props.isFirstMessage ? "auto" : "91%")};
+  padding: ${(props) => (props.isFirstMessage ? "8px" : "20px")};
   padding-left: ${(props) => (props.isFirstMessage ? "90px" : "15px")};
   padding-right: ${(props) => (props.isUser ? "0px" : "1rem")};
 
@@ -54,7 +53,7 @@ const MessageBubble = styled.div`
   background-position: center;
   color: black;
   word-wrap: break-word;
-  font-size: 0.9rem;
+  font-size: 0.83rem;
   line-height: 1.2;
   white-space: pre-wrap;
   position: relative;
@@ -62,10 +61,10 @@ const MessageBubble = styled.div`
 
 const CharacterImage = styled.img`
   position: absolute;
-  top: ${(props) => (props.isFirstMessage ? "-30px" : "-52px")};
+  top: ${(props) => (props.isFirstMessage ? "-30px" : "-38px")};
   left: ${(props) => (props.isFirstMessage ? "-40px" : "-10px")};
-  width: ${(props) => (props.isFirstMessage ? "120px" : "65px")};
-  height: ${(props) => (props.isFirstMessage ? "110px" : "60px")};
+  width: ${(props) => (props.isFirstMessage ? "120px" : "55px")};
+  height: ${(props) => (props.isFirstMessage ? "110px" : "50px")};
   z-index: 2;
 `;
 

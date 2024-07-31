@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 const TargetInfo = ({ isOpen, onRequestClose, markerData }) => {
   const nav = useNavigate();
   const handleChat = () => {
-    nav(`/chat/${encodeURIComponent(markerData.title)}`);
+    const sanitizedTitle = markerData.title.replace(/\s+/g, ""); // 모든 공백 제거
+    nav(`/chat/${encodeURIComponent(sanitizedTitle)}`);
   };
 
   return (
