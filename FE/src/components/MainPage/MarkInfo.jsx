@@ -43,6 +43,7 @@ const TargetInfo = ({ isOpen, onRequestClose, markerData }) => {
 export default TargetInfo;
 
 const MarketDetail = styled.div`
+  padding-left: 0.5rem;
   height: 30rem;
   display: flex;
   justify-content: center;
@@ -59,6 +60,7 @@ const ContentWrapper = styled.div`
 `;
 
 const MarketImg = styled.div`
+  margin-right: 1.5rem;
   img {
     width: 108px;
     height: 108px;
@@ -83,7 +85,11 @@ const MarketInfo = styled.div`
   button {
     background-color: #f3f4f9;
     color: #414141;
-    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px 0 8px;
+    width: auto;
     height: 21px;
     border-color: #cfcfcf;
     border-radius: 5px;
@@ -95,5 +101,6 @@ const MarketInfo = styled.div`
 
   p {
     font-size: 10px;
+    line-height: 15px;
   }
 `;
