@@ -11,7 +11,21 @@ const MessageInput = ({ addMessage }) => {
     if (message.trim() !== "") {
       addMessage({ text: message, isUser: true });
       axios
-        .post(`http://101.79.10.180:8000/clova_chatbot/test/${message}/`)
+        .post(`http://101.79.10.180:8000/clova_chatbot/skillset/`, {
+          query: message,
+          /* 사용자 질의문 */
+          tokenStream: false /* stream 출력 x */,
+          requestOverride: {
+            /* OpenAPI 인증키  */
+            baseOperation: {
+              header: {
+                "X-Naver-Client-Id": "QdTH6RmiC3gXDz03tzBs",
+                "X-Naver-Client-Secret": "YF3soMinxm",
+              },
+            },
+          },
+        })
+
         .then((res) => {
           console.log(res);
           addMessage({ text: res.data.response, isUser: false });
@@ -27,10 +41,11 @@ const MessageInput = ({ addMessage }) => {
     <InputContainer>
       <InputWrapper>
         <MicrophoneIcon>
-          <SlMicrophone size={"1.3rem"} />
+          <SlMicrophone />
         </MicrophoneIcon>
         <ChatMessageInput
           type="text"
+          placeholder="메시지를 입력하세요..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={(e) => {
@@ -40,7 +55,7 @@ const MessageInput = ({ addMessage }) => {
           }}
         />
         <ChatBtn onClick={handleSendMessage}>
-          <IoIosArrowRoundUp size={"1.8rem"} />
+          <IoIosArrowRoundUp />
         </ChatBtn>
       </InputWrapper>
     </InputContainer>
