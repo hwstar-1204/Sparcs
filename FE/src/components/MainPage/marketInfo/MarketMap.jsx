@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import TargetInfo from "../MarkInfo";
 import image from "../../../assets/marketImg/캡처.jpg";
-import image2 from "../../../assets/marketImg/busan.jpg";
 import image3 from "../../../assets/marketImg/green.jpg";
 import image4 from "../../../assets/marketImg/gwang.jpg";
 import image5 from "../../../assets/marketImg/h.jpg";
@@ -12,7 +11,6 @@ import image9 from "../../../assets/marketImg/ky.jpg";
 import image10 from "../../../assets/marketImg/market2.jpg";
 import image11 from "../../../assets/marketImg/market3.jpg";
 import image12 from "../../../assets/marketImg/market4.jpg";
-import image14 from "../../../assets/marketImg/nood.jpg";
 import image15 from "../../../assets/marketImg/market1.jpg";
 import image16 from "../../../assets/marketImg/kang.jpg";
 import image17 from "../../../assets/marketImg/jin.jpg";
@@ -41,14 +39,14 @@ const Map = () => {
       },
       {
         position: new naver.maps.LatLng(37.570535, 127.0008248),
-        title: "박가네 빈대떡",
+        title: "박가네빈대떡",
         category: "떡,전",
         address: "서울특별시 종로구 종로5가 138-10",
         img: image10,
       },
       {
         position: new naver.maps.LatLng(37.5702805, 126.9987951),
-        title: "60년전통떡집",
+        title: "전통떡집",
         category: "떡,전",
         address: "서울특별시 종로구 예지동 2-1",
         img: image11,
@@ -68,15 +66,8 @@ const Map = () => {
         img: image19,
       },
       {
-        position: new naver.maps.LatLng(37.5697682, 126.9981036),
-        title: "원조누드치즈김밥",
-        category: "분식",
-        address: "서울특별시 종로구 예지동 2-1 광장시장 내 41호",
-        img: image14,
-      },
-      {
         position: new naver.maps.LatLng(37.570638, 127.0004749),
-        title: "강가네 떡볶이",
+        title: "강가네떡볶이",
         category: "분식",
         address: "서울특별시 종로구 종로4가 185-1 북2문 바로 앞",
         img: image16,
@@ -90,28 +81,28 @@ const Map = () => {
       },
       {
         position: new naver.maps.LatLng(37.5706134, 127.0004198),
-        title: "광장시장 찹쌀꽈배기",
+        title: "찹쌀꽈배기",
         category: "베이커리",
         address: "서울특별시 종로구 종로4가 188 105호",
         img: image12,
       },
       {
         position: new naver.maps.LatLng(37.5698571, 127.001522),
-        title: "경주십원빵 종로광장시장점",
+        title: "경주십원빵",
         category: "베이커리",
         address: "서울특별시 종로구 종로5가 398-18 1층",
         img: image,
       },
       {
         position: new naver.maps.LatLng(37.5699262, 127.0014533),
-        title: "쑥스초코파이 서울",
+        title: "쑥스초코파이",
         category: "베이커리",
         address: "서울특별시 종로구 종로5가 398-9 1층",
         img: image3,
       },
       {
         position: new naver.maps.LatLng(37.5706327, 126.9999909),
-        title: "형제육회 본점",
+        title: "형제육회",
         category: "육류",
         address: "서울특별시 종로구 종로4가 181-1",
         img: image5,
@@ -132,7 +123,7 @@ const Map = () => {
       },
       {
         position: new naver.maps.LatLng(37.5704664, 126.9998999),
-        title: "창신육회 본점",
+        title: "창신육회",
         category: "육류",
         address: "서울특별시 종로구 종로4가 165-3",
         img: image9,
@@ -150,13 +141,6 @@ const Map = () => {
         category: "해산물",
         address: "서울특별시 종로구 예지동 3-1 광장시장",
         img: image18,
-      },
-      {
-        position: new naver.maps.LatLng(37.5700659, 126.9943888),
-        title: "부산횟집",
-        category: "해산물",
-        address: "서울특별시 종로구 장사동 85",
-        img: image2,
       },
     ];
 
@@ -178,7 +162,7 @@ const Map = () => {
 
   return (
     <div>
-      <div id="map" style={{ width: "100%", height: "650px" }}></div>
+      <div id="map" style={{ width: "100%", height: "670px" }}></div>
       <TargetInfo
         isOpen={infoModalIsOpen}
         onRequestClose={() => setInfoModalIsOpen(false)}
