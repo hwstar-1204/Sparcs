@@ -1,26 +1,27 @@
-.modal {
+.markModal {
   position: absolute;
-  top: 50%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  width: 19.75rem;
-  height: 23rem;
+  width: 23rem;
+  height: 170px;
   max-width: 90%;
   border-radius: 6px;
-  box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.1);
   outline-style: none;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
   border-radius: 0.625rem;
 }
 
-.overlay {
+.markOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0);
   z-index: 1000;
 }
