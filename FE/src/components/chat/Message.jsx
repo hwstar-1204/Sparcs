@@ -54,7 +54,7 @@ const MessageBubble = styled.div`
   background-position: center;
   color: black;
   word-wrap: break-word;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.2;
   white-space: pre-wrap;
   position: relative;

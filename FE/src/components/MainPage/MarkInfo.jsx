@@ -3,7 +3,6 @@ import "./MarkInfo.css";
 import styled from "styled-components";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 
 const TargetInfo = ({ isOpen, onRequestClose, markerData }) => {
   const nav = useNavigate();

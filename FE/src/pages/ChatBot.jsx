@@ -112,7 +112,6 @@ const ChatBot = () => {
         </BackIcon>
         <h1>{decodeURIComponent(marketName)}</h1>
         <div>
-          <IoMdArrowDropright />
           호복이는 광장시장 먹거리의 스토리를 전하는 우리말 지킴이에요.
           <br /> 음식에 관련된 것이라면 무엇이든 물어보세요.
         </div>
@@ -144,12 +143,12 @@ const HeaderBar = styled.div`
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   h1 {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 600;
     line-height: 4;
   }
   div {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
     display: flex;
     justify-content: center;
@@ -167,16 +166,19 @@ const WelcomeMessage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: -20px;
+  margin-top: 7px;
+  padding: 5px;
 `;
 
 const WelcomeText = styled.span`
-  font-size: 11.5px;
+  font-size: 0.9rem;
   margin-bottom: 10px;
 `;
 
 const WelcomeImageContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 102%;
   margin-top: 10px;
 `;
 
