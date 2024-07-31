@@ -26,7 +26,7 @@ const Map = () => {
   useEffect(() => {
     // 지도 초기화
     const map = new naver.maps.Map("map", {
-      center: new naver.maps.LatLng(37.5693164, 126.9998999), // 잠실 롯데월드를 중심으로 하는 지도
+      center: new naver.maps.LatLng(37.569999, 126.9998999), // 잠실 롯데월드를 중심으로 하는 지도
       zoom: 17,
     });
 
@@ -178,7 +178,7 @@ const Map = () => {
 
   return (
     <div>
-      <div id="map" style={{ width: "100%", height: "800px" }}></div>
+      <div id="map" style={{ width: "100%", height: "650px" }}></div>
       <TargetInfo
         isOpen={infoModalIsOpen}
         onRequestClose={() => setInfoModalIsOpen(false)}

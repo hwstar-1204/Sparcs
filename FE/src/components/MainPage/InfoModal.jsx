@@ -100,6 +100,7 @@ const Header = styled.div`
 const TextLine = styled.div`
   line-height: 1.5;
   font-size: 0.9rem;
+  margin-left: 0.7rem;
   div {
     font-size: 0.8rem;
   }
