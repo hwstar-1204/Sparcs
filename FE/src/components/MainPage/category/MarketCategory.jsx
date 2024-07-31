@@ -9,7 +9,11 @@ const MarketCategory = () => {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get("/store_info/category_list/?category=" + selectedCategory)
+      .get(
+        "http://101.79.10.180:8000/store_info/category_list/" +
+          selectedCategory +
+          "/"
+      )
       .then((res) => {
         const fetchedEvents = res.data.map((event) => ({
           id: event.id,
@@ -24,6 +28,7 @@ const MarketCategory = () => {
           mapy: event.mapy,
         }));
         setEvents(fetchedEvents);
+        console.log(events);
       })
       .catch((error) => {
         console.error("Error fetching events:", error);
@@ -36,7 +41,7 @@ const MarketCategory = () => {
         <ClassificationCategory
           category={"떡/전"}
           onClick={() => {
-            setSelectedCategory("떡/전");
+            setSelectedCategory("떡,전");
           }}
         />
         <ClassificationCategory
