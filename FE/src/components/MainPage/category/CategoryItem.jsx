@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 const CategoryItem = ({ title, category, address }) => {
   const nav = useNavigate();
   const handleChatBot = () => {
-    nav(`/chat/${encodeURIComponent(title)}`);
+    const sanitizedTitle = title.replace(/\s+/g, ""); // 모든 공백 제거
+    nav(`/chat/${encodeURIComponent(sanitizedTitle)}`);
   };
   CategoryItem.propTypes = {
     title: PropTypes.string.isRequired,
