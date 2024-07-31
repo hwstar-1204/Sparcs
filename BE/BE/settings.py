@@ -34,10 +34,16 @@ REST_FRAMEWORK = {
     # 'PAGE_SIZE': 10
 }
 
+#CORS 관련 추가
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:5173','http://localhost:5173'] #(포트 지정)
+CORS_ALLOW_ALL_ORIGINS = True #(모든 포트 허용)
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,28 +92,28 @@ WSGI_APPLICATION = 'BE.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
-# DATABASES = {
-#     # debug모드일때
-#
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.getenv("DATABASE_NAME"),
-#         'USER': os.getenv("DATABASE_USER"),
-#         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
-#         'HOST': os.getenv("DATABASE_HOST"),
-#         'PORT': os.getenv("DATABASE_PORT"),
-#        }
-# }
+DATABASES = {
+    # debug모드일때
+
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("DATABASE_NAME"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"),
+       }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
