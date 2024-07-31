@@ -59,8 +59,6 @@ const ContentWrapper = styled.div`
 `;
 
 const MarketImg = styled.div`
-  margin-right: 20px;
-
   img {
     width: 108px;
     height: 108px;
