@@ -32,5 +32,5 @@ class ChatbotView(View):
         bot = chatbot()
         bot.set_message(user_query)
         response = bot.run()
-        # response = response.encode('utf-8')
+        print(response.encode('utf-8'))
         return JsonResponse({'response': response})
