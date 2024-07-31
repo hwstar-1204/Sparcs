@@ -7,7 +7,6 @@ import backgroundImage from "../assets/chatbackground.png";
 import welcomeImage from "../assets/chat/p.png";
 import ChatWindow from "../components/chat/ChatWindow";
 import MessageInput from "../components/chat/MessageInput";
-
 const ChatBot = () => {
   const { marketName } = useParams();
   const navigate = useNavigate();

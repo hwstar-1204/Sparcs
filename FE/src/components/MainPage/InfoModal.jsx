@@ -2,7 +2,6 @@ import Modal from "react-modal";
 import { IoClose } from "react-icons/io5";
 import styled from "styled-components";
 import "./InfoModal.css";
-
 const InfoModal = ({ isOpen, onRequestClose }) => {
   return (
     <div>
@@ -13,7 +12,7 @@ const InfoModal = ({ isOpen, onRequestClose }) => {
         overlayClassName="overlay"
       >
         <ModalContent>
-          <ModalImage src="src/assets/tourGuide.png" alt="Modal Top Image" />
+          <ModalImage src="src/assets/tourGuide1.png" alt="Modal Top Image" />
           <Header>
             <button onClick={onRequestClose}>
               <IoClose size={"1.5rem"} />
@@ -24,7 +23,7 @@ const InfoModal = ({ isOpen, onRequestClose }) => {
             <TextLine>
               안녕하세요, <Bold>타일러</Bold> 님.<br></br> <Bold>광장시장</Bold>
               에 오신 것을 환영해요!<br></br> 저는 오늘 광장시장 안내를 도와드릴
-              투어 가이드 호복이에요.<br></br>
+              투어 가이드 '나랑'이에요.<br></br>
             </TextLine>
             <StampContainer>
               <TextLine>
