@@ -1,7 +1,6 @@
 import Modal from "react-modal";
 import { IoClose } from "react-icons/io5";
 import styled from "styled-components";
-
 import "./InfoModal.css";
 
 const InfoModal = ({ isOpen, onRequestClose }) => {
