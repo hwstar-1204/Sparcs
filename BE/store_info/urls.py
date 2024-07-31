@@ -6,6 +6,6 @@ app_name = 'store_info'
 
 
 urlpatterns = [
-    path('', StoreListAPIView.as_view(), name='store_list'),
-    path('category_list/', CategoryListAPIView.as_view(), name='category_list'),
+    path('<str:name>/', StoreListAPIView.as_view(), name='store_list'),
+    path('category_list/<str:category>/', CategoryListAPIView.as_view(), name='category_list'),
 ]
