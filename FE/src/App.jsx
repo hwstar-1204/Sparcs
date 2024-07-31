@@ -4,11 +4,9 @@ import Notfound from "./pages/Notfound";
 import QRscan from "./pages/QRscan";
 import MyScanMarket from "./pages/MyScanMarket";
 import ChatBot from "./pages/ChatBot";
-import Test from "./components/chat/Test";
 const App = () => {
   return (
     <>
-      <Test />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/qrscan" element={<QRscan />} />
