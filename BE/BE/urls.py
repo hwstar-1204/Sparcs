@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +26,4 @@ urlpatterns = [
     path('store_info/', include('store_info.urls', namespace='store_info')),
     path('clova_chatbot/', include('clova_chatbot.urls', namespace='clova_chatbot')),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

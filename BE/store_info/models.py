@@ -20,3 +20,7 @@ class Store(models.Model):
     def __str__(self):
         return self.name + self.roadAddress
 
+class Stamp(models.Model):
+    name = models.ForeignKey(Store, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='image/', blank=True)
+    is_active = models.BooleanField(default=False)

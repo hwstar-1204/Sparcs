@@ -150,7 +150,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_ROOT = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
 
+# MEDIA_ROOT는 실제로 유저가 올리는 이미지 등의 파일이 올라가는 루트 위치를 의미합니다.
+# 다음에, MEDIA_URL은 이 루트 폴더를 어느 url과 맵핑
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
