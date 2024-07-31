@@ -10,8 +10,9 @@ const MarketCategory = () => {
   useEffect(() => {
     axios
       .get(
-        "http://101.79.10.180:8000/store_info/category_list/?category=" +
-          selectedCategory
+        "http://101.79.10.180:8000/store_info/category_list/" +
+          selectedCategory +
+          "/"
       )
       .then((res) => {
         const fetchedEvents = res.data.map((event) => ({
@@ -28,6 +29,8 @@ const MarketCategory = () => {
         }));
         setEvents(fetchedEvents);
         console.log(res);
+        console.log(events);
+
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +43,7 @@ const MarketCategory = () => {
         <ClassificationCategory
           category={"떡/전"}
           onClick={() => {
-            setSelectedCategory("떡/전");
+            setSelectedCategory("떡,전");
           }}
         />
         <ClassificationCategory

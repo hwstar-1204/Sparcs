@@ -48,7 +48,7 @@ const HeaderContainer = styled.div`
   border: black;
   border-bottom-left-radius: 0.625rem;
   border-bottom-right-radius: 0.625rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
   div {
     font-size: 1.25rem;
     font-weight: bold;
