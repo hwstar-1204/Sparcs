@@ -7,20 +7,23 @@ import subsequentCharacterImage from "../../assets/tourGuide1.png";
 const Message = ({ message, isFirstMessage }) => {
   return (
     <MessageContainer isUser={message.isUser}>
-      <MessageBubble isUser={message.isUser} isFirstMessage={isFirstMessage}>
-        {!message.isUser && (
-          <CharacterImage
-            src={
-              isFirstMessage ? firstCharacterImage : subsequentCharacterImage
-            }
-            alt="Character"
-            isFirstMessage={isFirstMessage}
-          />
-        )}
-        <MessageText isFirstMessage={isFirstMessage}>
-          {message.text}
-        </MessageText>
-      </MessageBubble>
+      <H>
+        <MessageBubble isUser={message.isUser} isFirstMessage={isFirstMessage}>
+          {!message.isUser && (
+            <CharacterImage
+              src={
+                isFirstMessage ? firstCharacterImage : subsequentCharacterImage
+              }
+              alt="Character"
+              isFirstMessage={isFirstMessage}
+            />
+          )}
+          <MessageText isFirstMessage={isFirstMessage}>
+            {message.text}
+          </MessageText>
+        </MessageBubble>
+        {message.content}
+      </H>
     </MessageContainer>
   );
 };
@@ -33,10 +36,11 @@ const MessageContainer = styled.div`
 `;
 
 const MessageBubble = styled.div`
-  width: ${(props) => (props.isUser ? "auto" : "100%")};
-
-  padding: ${(props) => (props.isUser ? "8px" : "12px")};
+  width: ${(props) =>
+    !props.isUser && props.isFirstMessage ? "auto" : "100%"};
+  padding: 8px;
   padding-left: ${(props) => (props.isFirstMessage ? "90px" : "15px")};
+  padding-right: ${(props) => (props.isUser ? "0px" : "1rem")};
 
   border-radius: 20px;
   background-color: ${(props) => (props.isUser ? "#FFD58C" : "transparent")};
@@ -70,5 +74,8 @@ const MessageText = styled.div`
   z-index: 1;
   margin-left: ${(props) => (props.isFirstMessage ? "-25px" : "-5px")};
 `;
-
+const H = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export default Message;
