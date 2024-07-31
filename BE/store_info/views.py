@@ -1,10 +1,10 @@
-from rest_framework.generics import RetrieveAPIView, ListAPIView
-from .models import Store
-from .serializers import StoreSerializer
-from rest_framework import filters
-
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
+from .models import Store, Stamp
+from .serializers import StoreSerializer, StampSerializer
+
 
 
 # Create your views here.
@@ -32,3 +32,7 @@ class CategoryListAPIView(APIView):
         
         serializer = StoreSerializer(stores, many=True)
         return Response(serializer.data)
+
+class StampViewSet(viewsets.ModelViewSet):
+    queryset = Stamp.objects.all()
+    serializer_class = StampSerializer
