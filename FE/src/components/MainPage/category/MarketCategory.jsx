@@ -28,10 +28,12 @@ const MarketCategory = () => {
           mapy: event.mapy,
         }));
         setEvents(fetchedEvents);
+        console.log(res);
         console.log(events);
+
       })
       .catch((error) => {
-        console.error("Error fetching events:", error);
+        console.log(error);
       });
   }, [selectedCategory]);
 

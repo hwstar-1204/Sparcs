@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { MdArrowForwardIos } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const CategoryItem = ({ name, category, address }) => {
+  const nav = useNavigate();
+  const handleChatBot = () => {
+    nav(`/chat/${encodeURIComponent(name)}`);
+  };
+  CategoryItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+  };
   return (
     <CategoryItemList>
       <ImgWrapper>
@@ -10,11 +21,11 @@ const CategoryItem = ({ name, category, address }) => {
       <DetailContainer>
         <MarketName>{name}</MarketName>
         <Classfication>
-          <div>category</div>
+          <div>{category}</div>
         </Classfication>
         <Location>{address}</Location>
       </DetailContainer>
-      <ChatBotBtn>
+      <ChatBotBtn onClick={handleChatBot}>
         <MdArrowForwardIos color="#707070" />
       </ChatBotBtn>
     </CategoryItemList>
@@ -22,6 +33,7 @@ const CategoryItem = ({ name, category, address }) => {
 };
 
 export default CategoryItem;
+
 const ImgWrapper = styled.div`
   font-size: 0.875rem;
   font-weight: bold;
@@ -36,12 +48,13 @@ const MarketName = styled.div`
 `;
 const Classfication = styled.div`
   background-color: #cfcfcf;
-  width: 1.0625rem;
+  width: fit-content;
   height: 1.0625rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 0.375rem;
+  padding: 0 0.3rem;
 
   div {
     font-size: 0.625rem;
@@ -66,6 +79,6 @@ const DetailContainer = styled.div`
 `;
 const ChatBotBtn = styled.div`
   position: absolute;
-
-  left: 345px;
+  right: 1rem;
+  cursor: pointer;
 `;
