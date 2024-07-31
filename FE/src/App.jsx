@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import Market from "./pages/Market";
 import Notfound from "./pages/Notfound";
 import QRscan from "./pages/QRscan";
 import MyScanMarket from "./pages/MyScanMarket";
@@ -13,7 +12,6 @@ const App = () => {
       <Test />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/market/:id" element={<Market />} />
         <Route path="/qrscan" element={<QRscan />} />
         <Route path="/myscanmarket" element={<MyScanMarket />} />
         <Route path="/marketdetail" element={<MarketDetail />} />
