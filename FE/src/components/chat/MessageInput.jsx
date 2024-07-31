@@ -10,15 +10,56 @@ const MessageInput = ({ addMessage }) => {
   const handleSendMessage = () => {
     if (message.trim() !== "") {
       addMessage({ text: message, isUser: true });
+
+      const apiUrl =
+        "https://clovastudio.stream.ntruss.com/v1/skillsets/czfk1pco/versions/10/final-answer";
+
+      const headers = {
+        "X-NCP-CLOVASTUDIO-API-KEY":
+          "X-NCP-CLOVASTUDIO-API-KEY",
+        "X-NCP-APIGW-API-KEY": "X-NCP-APIGW-API-KEY",
+        "X-NCP-CLOVASTUDIO-REQUEST-ID": "6e6195f9-7ce6-4b75-b620-136e78a5fc46",
+        "Content-Type": "application/json",
+        Accept: "text/event-stream",
+      };
+
+      const data = {
+        query: message,
+        chatHistory: [
+          {
+            role: "user",
+            content: message,
+          },
+        ],
+        tokenStream: false,
+        requestOverride: {
+          baseOperation: {
+            header: {},
+            query: {},
+            requestBody: {},
+          },
+          operations: [
+            {
+              operationId: "YOUR_OPERATION_ID",
+              header: {},
+              query: {},
+              requestBody: {},
+            },
+          ],
+        },
+      };
+
       axios
-        .get(`http://101.79.10.180:8000/clova_chatbot/test/${message}/`)
+        .post(apiUrl, data, { headers })
         .then((res) => {
           console.log(res);
-          addMessage({ text: res.data.response, isUser: false });
+          // addMessage({ text: res.data.response, isUser: false });
         })
         .catch((err) => {
           console.log(err);
+          console.log("hi");
         });
+
       setMessage("");
     }
   };

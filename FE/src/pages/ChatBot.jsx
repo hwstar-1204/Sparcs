@@ -4,6 +4,7 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import styled from "styled-components";
 import backgroundImage from "../assets/chatbackground.png";
+import welcomeImage from "../assets/chat/p.png";
 import ChatWindow from "../components/chat/ChatWindow";
 import MessageInput from "../components/chat/MessageInput";
 
@@ -11,23 +12,90 @@ const ChatBot = () => {
   const { marketName } = useParams();
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
+  const [storeStamp, setStoreStamp] = useState(null);
+  const [selectMessage, setSelectMessage] = useState("");
 
   useEffect(() => {
+    const importStamp = async () => {
+      try {
+        const stampModule = await import(
+          `../assets/stamp/${decodeURIComponent(marketName)}.png`
+        );
+        setStoreStamp(stampModule.default);
+      } catch (error) {
+        console.error("Failed to load stamp image:", error);
+        setStoreStamp(null);
+      }
+    };
+    importStamp();
+  }, [marketName]);
+
+  useEffect(() => {
+    console.log(marketName);
     setMessages([
       {
         text: (
-          <>
-            안녕하세요, 타일러님!
-            <br />
-            <br />
-            광장시장 {decodeURIComponent(marketName)}
-            가게에 <br /> 찾아 오신 것을 환영해요 😃
-          </>
+          <WelcomeMessage>
+            <WelcomeText>
+              안녕하세요, 타일러님!
+              <br />
+              <br />
+              광장시장 {decodeURIComponent(marketName)}
+              가게에 <br /> 찾아 오신 것을 환영해요 😃 <br /> <br />
+              {decodeURIComponent(marketName)} 스탬프를 수집하신 것을
+              축하드려요!
+              <br /> 아래 항목들 중 궁금한 부분을 클릭하시면 가게에
+              <br />
+              대한 정보를 들을 수 있어요.
+            </WelcomeText>
+          </WelcomeMessage>
+        ),
+        content: (
+          <WelcomeImageContainer>
+            <WelcomeImageBackground src={welcomeImage} alt="Welcome" />
+            <Container>
+              <Stamp>
+                {storeStamp && (
+                  <WelcomeStamps
+                    src={storeStamp}
+                    alt={`${decodeURIComponent(marketName)} Stamp`}
+                  />
+                )}
+              </Stamp>
+              <Detail>
+                <DetailContent
+                  onClick={() => setSelectMessage("가게 소개해줘")}
+                >
+                  <div>가게 소개</div>
+                </DetailContent>
+                <DetailContent
+                  onClick={() => setSelectMessage("대표 인기메뉴가 뭐야?")}
+                >
+                  <div>대표 인기메뉴</div>
+                </DetailContent>
+                <DetailContent
+                  onClick={() => setSelectMessage("고객 리뷰 보여줘")}
+                >
+                  <div>고객 리뷰</div>
+                </DetailContent>
+                <DetailContent
+                  onClick={() => setSelectMessage("잘 어울리는 음식은 뭐야?")}
+                >
+                  <div>잘 어울리는 음식</div>
+                </DetailContent>
+                <DetailContent
+                  onClick={() => setSelectMessage("그 외 것들을 질문할래")}
+                >
+                  <div>그 외</div>
+                </DetailContent>
+              </Detail>
+            </Container>
+          </WelcomeImageContainer>
         ),
         isUser: false,
       },
     ]);
-  }, [marketName]);
+  }, [marketName, storeStamp]);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -94,6 +162,81 @@ const BackIcon = styled.div`
   top: 20px;
   left: 18px;
   cursor: pointer;
+`;
+
+const WelcomeMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const WelcomeText = styled.span`
+  font-size: 11.5px;
+  margin-bottom: 10px;
+`;
+
+const WelcomeImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+`;
+
+const WelcomeImageBackground = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+`;
+
+const Stamp = styled.div`
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const WelcomeStamps = styled.img`
+  width: 12rem;
+  margin-left: 0.8rem;
+  height: auto;
+`;
+
+const Detail = styled.div`
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3.5rem;
+`;
+
+const DetailContent = styled.button`
+  background-color: #f3e7db;
+  border-color: #644119;
+  color: #111111;
+  padding: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  margin: 2px 0;
+  height: 23px;
+  border: 1.5px solid;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  div {
+    font-size: 0.6rem;
+    font-weight: bold;
+  }
 `;
 
 export default ChatBot;

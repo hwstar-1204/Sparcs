@@ -6,9 +6,11 @@ import QRscan from "./pages/QRscan";
 import MyScanMarket from "./pages/MyScanMarket";
 import MarketDetail from "./pages/MarketDetail";
 import ChatBot from "./pages/ChatBot";
+import Test from "./components/chat/Test";
 const App = () => {
   return (
     <>
+      <Test />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/market/:id" element={<Market />} />
