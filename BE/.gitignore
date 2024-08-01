@@ -285,5 +285,8 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+.DS_Store
+.idea/*
 
-# End of https://www.toptal.com/developers/gitignore/api/python,pycharm
+nohup.out
+media/
