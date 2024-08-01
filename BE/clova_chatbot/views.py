@@ -14,9 +14,9 @@ class SkillSetView(APIView):
         try:
             final_answer_executor = SkillSetFinalAnswerExecutor(
                 host='https://clovastudio.stream.ntruss.com',
-                api_key='X-NCP-CLOVASTUDIO-API-KEY',
-                api_key_primary_val='X-NCP-APIGW-API-KEY',
-                request_id='X-NCP-CLOVASTUDIO-REQUEST-ID'
+                api_key='NTA0MjU2MWZlZTcxNDJiY5+eVxFXCD1c4jQlwrzXLwv7h6m/NWOwbTALp4W4hZXJ',
+                api_key_primary_val='Wf9MV2jCCC2u2bSoe2T6LV8WEDpeWUN6mlisoVq7',
+                request_id='65ffef29-87ad-4cec-88bb-4c4fb1617977'
             )
 
             response_lines = final_answer_executor.execute(request_data)
