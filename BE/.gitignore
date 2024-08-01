@@ -289,3 +289,4 @@ pyrightconfig.json
 .idea/*
 
 nohup.out
+media/
