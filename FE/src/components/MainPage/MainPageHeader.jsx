@@ -3,10 +3,8 @@ import { useState } from "react";
 import MarketCategory from "./category/MarketCategory";
 import MarketMap from "./marketInfo/MarketMap";
 import { CiGlobe } from "react-icons/ci";
-import InfoModal from "./InfoModal";
 const MainPageHeader = () => {
   const [selectName, setSelectName] = useState("market info");
-  const [infoModalIsOpen, setInfoModalIsOpen] = useState(true);
   return (
     <>
       <HeaderContainer>
@@ -34,10 +32,6 @@ const MainPageHeader = () => {
         </SelectContainer>
       </HeaderContainer>
       {selectName === "category" ? <MarketCategory /> : <MarketMap />}
-      <InfoModal
-        isOpen={infoModalIsOpen}
-        onRequestClose={() => setInfoModalIsOpen(false)}
-      />
     </>
   );
 };
