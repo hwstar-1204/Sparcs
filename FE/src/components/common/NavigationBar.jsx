@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { RiHome2Line } from "react-icons/ri";
 import { AiOutlineScan } from "react-icons/ai";
@@ -73,6 +73,7 @@ const NavigationLayout = styled.div`
   width: 100%;
   box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
   background-color: white;
+  z-index: 1000;
 `;
 
 const SelectContainer = styled.div`

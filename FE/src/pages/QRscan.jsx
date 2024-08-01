@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import NavigationBar from "../components/common/NavigationBar";
 import { CiGlobe } from "react-icons/ci";
 import Html5QrcodePlugin from "../components/qrscan/Html5QrcodeScannerPlugin";
@@ -8,17 +9,33 @@ const QRscan = () => {
   const [scannedResult, setScannedResult] = useState("");
   const [scanError, setScanError] = useState("");
   const [isScanning, setIsScanning] = useState(true);
+  const navigate = useNavigate();
+
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
 
   const onNewScanResult = useCallback((decodedText, decodedResult) => {
     console.log("스캔된 QR 코드:", decodedText);
     console.log("전체 결과:", decodedResult);
 
-    const urlPattern =
-      /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-    if (urlPattern.test(decodedText)) {
+    if (isValidUrl(decodedText)) {
       setScannedResult(decodedText);
       setScanError("");
       setIsScanning(false);
+
+      // HTTPS 프로토콜이 없는 경우 추가
+      const url = decodedText.startsWith("http")
+        ? decodedText
+        : `https://${decodedText}`;
+
+      // 스캔된 URL로 이동
+      window.location.href = url;
     } else {
       console.log("유효하지 않은 URL 또는 텍스트입니다.");
       setScannedResult("유효하지 않은 QR 코드 내용");
@@ -34,7 +51,7 @@ const QRscan = () => {
     console.error("QR 코드 스캔 에러:", errorMessage);
     setScanError("QR 코드를 인식하지 못했습니다. 다시 시도해주세요.");
     setScannedResult("");
-    setTimeout(() => setScanError(""), 3000);
+    setTimeout(() => setScanError(""), 1000);
   }, []);
 
   const handleRetry = useCallback(() => {

@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 
-const ClassificationCategory = ({ category, onClick }) => {
+const ClassificationCategory = ({ category, onClick, isSelected }) => {
   return (
     <ClassificationLayout>
-      <Classification onClick={onClick}>
+      <Classification onClick={onClick} isSelected={isSelected}>
         <div>{category}</div>
       </Classification>
     </ClassificationLayout>
@@ -19,17 +18,21 @@ const ClassificationLayout = styled.div`
   align-items: center;
   height: 3.6875rem;
 `;
+
 const Classification = styled.div`
   width: auto;
   height: 1.625rem;
-  background-color: #e8e8e8;
+  background-color: ${(props) => (props.isSelected ? "#566CC7" : "#e8e8e8")};
   border-radius: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
   div {
-    color: #a0a0a0;
+    color: ${(props) => (props.isSelected ? "#FFFFFF" : "#a0a0a0")};
     font-size: 0.75rem;
     margin: 0.7rem;
   }

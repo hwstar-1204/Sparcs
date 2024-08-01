@@ -5,11 +5,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const MarketCategory = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("떡,전");
   const [events, setEvents] = useState([]);
+
   useEffect(() => {
     axios
-      .get("/store_info/category_list/?category=" + selectedCategory)
+      .get(
+        "http://101.79.10.180:8000/store_info/category_list/" +
+          selectedCategory +
+          "/"
+      )
       .then((res) => {
         const fetchedEvents = res.data.map((event) => ({
           id: event.id,
@@ -24,9 +29,11 @@ const MarketCategory = () => {
           mapy: event.mapy,
         }));
         setEvents(fetchedEvents);
+        console.log(res);
+        console.log(events);
       })
       .catch((error) => {
-        console.error("Error fetching events:", error);
+        console.log(error);
       });
   }, [selectedCategory]);
 
@@ -34,34 +41,29 @@ const MarketCategory = () => {
     <MarketCategoryLayout>
       <CategoryItem>
         <ClassificationCategory
-          category={"떡/전"}
-          onClick={() => {
-            setSelectedCategory("떡/전");
-          }}
+          category="떡/전"
+          onClick={() => setSelectedCategory("떡,전")}
+          isSelected={selectedCategory === "떡,전"}
         />
         <ClassificationCategory
-          category={"분식"}
-          onClick={() => {
-            setSelectedCategory("분식");
-          }}
+          category="분식"
+          onClick={() => setSelectedCategory("분식")}
+          isSelected={selectedCategory === "분식"}
         />
         <ClassificationCategory
-          category={"베이커리"}
-          onClick={() => {
-            setSelectedCategory("베이커리");
-          }}
+          category="베이커리"
+          onClick={() => setSelectedCategory("베이커리")}
+          isSelected={selectedCategory === "베이커리"}
         />
         <ClassificationCategory
-          category={"육류"}
-          onClick={() => {
-            setSelectedCategory("육류");
-          }}
+          category="육류"
+          onClick={() => setSelectedCategory("육류")}
+          isSelected={selectedCategory === "육류"}
         />
         <ClassificationCategory
-          category={"해산물"}
-          onClick={() => {
-            setSelectedCategory("해산물");
-          }}
+          category="해산물"
+          onClick={() => setSelectedCategory("해산물")}
+          isSelected={selectedCategory === "해산물"}
         />
       </CategoryItem>
       <ListCategory events={events} />
