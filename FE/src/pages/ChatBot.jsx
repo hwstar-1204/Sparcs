@@ -28,13 +28,13 @@ const ChatBot = () => {
         query = `${marketName}의 대표인기메뉴와 그 안에 들어가는 주요 재료와 조리방법, 떡볶이의 유래를 알려줘`;
         break;
       case "고객 리뷰":
-        query = `${marketName}에 대한 고객들의 리뷰를 알려줘`;
+        query = `${marketName}을 가본적이 있는 사람들의 후기를 알려줘`;
         break;
       case "잘 어울리는 음식":
         query = `${marketName}에서 파는 음식과 잘 어울리는 음식을 알려줘`;
         break;
       case "그 외":
-        query = `다른 부분이 궁금해`;
+        query = `${marketName}에 대한 다른 부분이 궁금해`;
         break;
       default:
         query = `${marketName} ${option}`;

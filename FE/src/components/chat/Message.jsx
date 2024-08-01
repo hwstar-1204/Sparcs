@@ -37,9 +37,12 @@ const MessageContainer = styled.div`
 
 const MessageBubble = styled.div`
   width: ${(props) => (!props.isUser && props.isFirstMessage ? "auto" : "91%")};
+  /* height: ${(props) => (props.isUser ? "2px" : "auto")}; */
   padding: ${(props) => (props.isFirstMessage ? "8px" : "20px")};
   padding-left: ${(props) => (props.isFirstMessage ? "90px" : "15px")};
-  padding-right: ${(props) => (props.isUser ? "0px" : "1rem")};
+  padding-right: ${(props) => (props.isUser ? "5px" : "1rem")};
+  padding-top: ${(props) => (props.isUser ? "10px" : "1rem")};
+  padding-bottom: ${(props) => (props.isUser ? "10px" : "1rem")};
 
   border-radius: 20px;
   background-color: ${(props) => (props.isUser ? "#FFD58C" : "transparent")};
