@@ -9,4 +9,4 @@ class StoreSerializer(serializers.ModelSerializer):
 class StampSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stamp
-        fields = ['id', 'name', 'image']
+        fields = '__all__'
